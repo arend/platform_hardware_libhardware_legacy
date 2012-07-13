@@ -392,9 +392,12 @@ int update_ctrl_interface(const char *config_file) {
             while (((ilen + (iptr - pbuf)) < nread) && (iptr[ilen] != '\n'))
                 ilen++;
             mlen = ((ilen >= mlen) ? ilen : mlen) + 1;
+            /*
+             * Don't.  Ever.  Modify.  My.  Config.  File.
             memmove(iptr + mlen, iptr + ilen + 1, nread - (iptr + ilen + 1 - pbuf));
             memset(iptr, '\n', mlen);
             memcpy(iptr, ifc, strlen(ifc));
+             */
             destfd = TEMP_FAILURE_RETRY(open(config_file, O_RDWR, 0660));
             if (destfd < 0) {
                 ALOGE("Cannot update \"%s\": %s", config_file, strerror(errno));
