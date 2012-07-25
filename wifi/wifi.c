@@ -315,21 +315,6 @@ int wifi_load_driver()
         return -1;
     }
 
-    /*
-     * wait for the sysfs node(s) required by driver client(s) to come into
-     * existence.
-     */
-    {
-        struct stat s;
-        /*
-         * TODO:  make the interface name "wlan0" be picked up from a property
-         */
-        while (stat("/sys/class/net/wlan0/phy80211/name", &s) != 0) {
-            usleep(1000);
-        }
-        ALOGE("sysfs node /sys/class/net/wlan0/phy80211/name is now present");
-    }
-
     if (strcmp(FIRMWARE_LOADER,"") == 0) {
         /* usleep(WIFI_DRIVER_LOADER_DELAY); */
         property_set(DRIVER_PROP_NAME, "ok");
