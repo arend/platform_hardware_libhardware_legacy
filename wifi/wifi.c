@@ -300,7 +300,8 @@ int wifi_load_driver()
                 DRIVER_MODULE_ARG,
                 NULL,
                 1,
-                DRIVER_PROBE_PATH)) {
+                DRIVER_PROBE_PATH,
+                NULL)) {
             ALOGE("insmod_by_dep %s with parameters %s failed\n", DRIVER_MODULE_NAME, DRIVER_MODULE_ARG);
             return -1;
         }
